@@ -1,4 +1,4 @@
-package com.sky.recruitmenttest.viewmodels
+package com.sky.recruitmenttest.presentation
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

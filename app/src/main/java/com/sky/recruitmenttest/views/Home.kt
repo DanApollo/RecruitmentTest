@@ -17,7 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.sky.recruitmenttest.ui.theme.RecruitmentTestTheme
-import com.sky.recruitmenttest.viewmodels.HomeViewModel
+import com.sky.recruitmenttest.presentation.HomeViewModel
 import com.sky.recruitmenttest.views.components.SimpleFlowRow
 
 @Composable
