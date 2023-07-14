@@ -1,31 +1,31 @@
 package com.sky.recruitmenttest.views
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Button
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.sky.recruitmenttest.ui.theme.RecruitmentTestTheme
 import com.sky.recruitmenttest.presentation.HomeViewModel
 import com.sky.recruitmenttest.views.components.MovieTile
-import com.sky.recruitmenttest.views.components.SimpleFlowRow
 
 @Composable
-fun Home() {
-    val viewModel = hiltViewModel<HomeViewModel>()
+fun Home(
+    viewModel: HomeViewModel = hiltViewModel()
+) {
     val state = viewModel.homeUIState.collectAsState()
+
+    LaunchedEffect(key1 = true) {
+        viewModel.getMovies()
+    }
     Column(
         modifier = Modifier
             .fillMaxSize(),
@@ -38,22 +38,13 @@ fun Home() {
                 Text(text = "Search")
             },
         )
-        Button(onClick = { viewModel.getMovies() }) {
-            Text(text = "Press me")
-        }
-        for (movie in state.value.movies) {
-            MovieTile(movie = movie)
-        }
-        SimpleFlowRow(
-            verticalGap = 30.dp,
-            horizontalGap = 20.dp,
-            alignment = Alignment.CenterHorizontally,
-            modifier = Modifier.padding(16.dp)
+        LazyVerticalGrid(
+            columns = GridCells.Fixed(count = 3)
         ) {
-            for (i in 1..50) {
-                Box(modifier = Modifier
-                    .size(height = 180.dp, width = 100.dp)
-                    .background(color = Color.Black))
+            items(
+                state.value.movies.size
+            ) { i ->
+                    MovieTile(movie = state.value.movies[i])
             }
         }
     }
