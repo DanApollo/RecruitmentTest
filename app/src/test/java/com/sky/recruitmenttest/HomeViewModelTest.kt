@@ -1,6 +1,6 @@
 package com.sky.recruitmenttest
 
-import com.sky.recruitmenttest.domain.repository.MyRepository
+import com.sky.recruitmenttest.domain.repository.MovieRepository
 import com.sky.recruitmenttest.presentation.HomeUIState
 import com.sky.recruitmenttest.presentation.HomeViewModel
 import io.mockk.mockk
@@ -12,15 +12,10 @@ import org.junit.Test
 import org.junit.Assert.*
 import org.junit.Before
 
-/**
- * Example local unit test, which will execute on the development machine (host).
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
 @ExperimentalCoroutinesApi
 class HomeViewModelTest {
     private lateinit var viewModel: HomeViewModel
-    private lateinit var mockRepository: MyRepository
+    private lateinit var mockRepository: MovieRepository
 
     @Before
     fun setup() {

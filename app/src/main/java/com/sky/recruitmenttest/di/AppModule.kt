@@ -1,6 +1,6 @@
 package com.sky.recruitmenttest.di
 
-import com.sky.recruitmenttest.data.remote.ApiService
+import com.sky.recruitmenttest.data.remote.MovieApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,12 +17,11 @@ object AppModule {
     @Provides
     // Only single instance is created for repositories.
     @Singleton
-    fun provideApiService(): ApiService {
+    fun provideApiService(): MovieApi {
         return Retrofit.Builder()
             .baseUrl("https://api.npoint.io/759fdfa82d6f33522e11/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(ApiService::class.java)
+            .create(MovieApi::class.java)
     }
-
 }

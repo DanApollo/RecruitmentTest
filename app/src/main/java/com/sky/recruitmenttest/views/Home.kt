@@ -44,7 +44,7 @@ fun Home(
             items(
                 state.value.movies.size
             ) { i ->
-                    MovieTile(movie = state.value.movies[i])
+                MovieTile(movie = state.value.movies[i])
             }
         }
     }

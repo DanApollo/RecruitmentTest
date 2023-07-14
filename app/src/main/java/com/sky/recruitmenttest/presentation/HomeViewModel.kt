@@ -1,9 +1,8 @@
 package com.sky.recruitmenttest.presentation
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
-import com.sky.recruitmenttest.data.models.Movie
-import com.sky.recruitmenttest.domain.repository.MyRepository
+import com.sky.recruitmenttest.data.models.MovieDto
+import com.sky.recruitmenttest.domain.repository.MovieRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -16,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val repository: MyRepository
+    private val repository: MovieRepository
 ) : ViewModel() {
     private val _homeUIState = MutableStateFlow(HomeUIState())
     val homeUIState: StateFlow<HomeUIState> = _homeUIState.asStateFlow()
@@ -26,18 +25,16 @@ class HomeViewModel @Inject constructor(
     }
 
     fun getMovies(
-
     ) = CoroutineScope(Dispatchers.IO).launch {
         try {
             val movies = repository.getMovies()
             _homeUIState.update { it.copy(movies = movies) }
         } catch (e: Exception) {
-            Log.d("hey", e.localizedMessage)
         }
     }
 }
 
 data class HomeUIState(
     val search: String = "",
-    val movies: List<Movie> = listOf()
+    val movies: List<MovieDto> = listOf()
 )

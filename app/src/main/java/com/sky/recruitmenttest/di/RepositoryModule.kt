@@ -1,7 +1,7 @@
 package com.sky.recruitmenttest.di
 
-import com.sky.recruitmenttest.data.repository.MyRepositoryImpl
-import com.sky.recruitmenttest.domain.repository.MyRepository
+import com.sky.recruitmenttest.data.repository.MovieRepositoryImpl
+import com.sky.recruitmenttest.domain.repository.MovieRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -15,6 +15,6 @@ abstract class RepositoryModule {
     @Binds
     @Singleton
     abstract fun bindMyRepository(
-        myRepositoryImpl: MyRepositoryImpl
-    ): MyRepository
+        movieRepositoryImpl: MovieRepositoryImpl
+    ): MovieRepository
 }

@@ -10,19 +10,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.sky.recruitmenttest.data.models.Movie
+import com.sky.recruitmenttest.data.models.MovieDto
 
 @Composable
-fun MovieTile(movie: Movie) {
-        Card(
-            modifier = Modifier
-                .size(height = 180.dp, width = 100.dp)
-                .padding(all = 5.dp),
-            border = BorderStroke(2.dp, Color.Red)
-        ) {
-            Column() {
-                Text(text = movie.title)
-                Text(text = movie.genre)
-            }
+fun MovieTile(movie: MovieDto) {
+    Card(
+        modifier = Modifier
+            .size(height = 180.dp, width = 100.dp)
+            .padding(all = 5.dp),
+        border = BorderStroke(2.dp, Color.Red)
+    ) {
+        Column() {
+            Text(text = movie.title)
+            Text(text = movie.genre)
         }
+    }
 }
