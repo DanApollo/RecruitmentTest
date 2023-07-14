@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.sky.recruitmenttest.ui.theme.RecruitmentTestTheme
 import com.sky.recruitmenttest.presentation.HomeViewModel
+import com.sky.recruitmenttest.views.components.MovieTile
 import com.sky.recruitmenttest.views.components.SimpleFlowRow
 
 @Composable
@@ -37,6 +38,12 @@ fun Home() {
                 Text(text = "Search")
             },
         )
+        Button(onClick = { viewModel.getMovies() }) {
+            Text(text = "Press me")
+        }
+        for (movie in state.value.movies) {
+            MovieTile(movie = movie)
+        }
         SimpleFlowRow(
             verticalGap = 30.dp,
             horizontalGap = 20.dp,
