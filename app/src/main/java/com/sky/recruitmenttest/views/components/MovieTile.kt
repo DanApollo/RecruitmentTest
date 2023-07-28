@@ -1,7 +1,10 @@
 package com.sky.recruitmenttest.views.components
 
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Card
@@ -10,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
 import com.sky.recruitmenttest.data.models.MovieDto
 
 @Composable
@@ -20,9 +24,17 @@ fun MovieTile(movie: MovieDto) {
             .padding(all = 5.dp),
         border = BorderStroke(2.dp, Color.Red)
     ) {
-        Column() {
-            Text(text = movie.title)
-            Text(text = movie.genre)
-        }
+            Box(modifier = Modifier.fillMaxSize()){
+                AsyncImage(
+                    model = movie.poster,
+                    contentDescription = null,
+                    modifier = Modifier.fillMaxSize()
+                )
+                Column(modifier = Modifier.background(color = Color.White.copy(alpha = 0.7f))) {
+                    Text(text = movie.title)
+                    Text(text = movie.genre)
+                }
+            }
+
     }
 }
