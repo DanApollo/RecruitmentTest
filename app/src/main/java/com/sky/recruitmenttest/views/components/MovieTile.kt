@@ -24,17 +24,16 @@ fun MovieTile(movie: MovieDto) {
             .padding(all = 5.dp),
         border = BorderStroke(2.dp, Color.Red)
     ) {
-            Box(modifier = Modifier.fillMaxSize()){
-                AsyncImage(
-                    model = movie.poster,
-                    contentDescription = null,
-                    modifier = Modifier.fillMaxSize()
-                )
-                Column(modifier = Modifier.background(color = Color.White.copy(alpha = 0.7f))) {
-                    Text(text = movie.title)
-                    Text(text = movie.genre)
-                }
+        Box(modifier = Modifier.fillMaxSize()){
+            AsyncImage(
+                model = movie.poster,
+                contentDescription = null,
+                modifier = Modifier.fillMaxSize()
+            )
+            Column(modifier = Modifier.background(color = Color.White.copy(alpha = 0.7f))) {
+                Text(text = movie.title)
+                Text(text = movie.genre)
             }
-
+        }
     }
 }
