@@ -42,9 +42,9 @@ fun Home(
             columns = GridCells.Fixed(count = 3)
         ) {
             items(
-                state.value.movies.size
+                state.value.filteredMovies.size
             ) { i ->
-                MovieTile(movie = state.value.movies[i])
+                MovieTile(movie = state.value.filteredMovies[i])
             }
         }
     }

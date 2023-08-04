@@ -22,13 +22,35 @@ class HomeViewModel @Inject constructor(
 
     fun onSearchBarChange(search: String) {
         _homeUIState.update { it.copy(search = search) }
+        movieFilter()
+    }
+
+    private fun movieFilter() {
+        if (homeUIState.value.search.isNotEmpty()) {
+            val tempFilteredMovies = mutableListOf<MovieDto>()
+            val keyWordArray = homeUIState.value.search.trim().split(" ").toTypedArray()
+            for (item in homeUIState.value.movies) {
+                var match = true
+                for (keyWord in keyWordArray) {
+                    if (!item.title.contains(keyWord, ignoreCase = true) && !item.genre.contains(keyWord, ignoreCase = true)) {
+                        match = false
+                    }
+                }
+                if (match) {
+                    tempFilteredMovies.add(item)
+                }
+            }
+            _homeUIState.update { it.copy(filteredMovies = tempFilteredMovies) }
+        } else {
+            _homeUIState.update { it.copy(filteredMovies = homeUIState.value.movies) }
+        }
     }
 
     fun getMovies(
     ) = CoroutineScope(Dispatchers.IO).launch {
         try {
             val movies = repository.getMovies()
-            _homeUIState.update { it.copy(movies = movies) }
+            _homeUIState.update { it.copy(movies = movies, filteredMovies = movies) }
         } catch (e: Exception) {
         }
     }
@@ -36,5 +58,6 @@ class HomeViewModel @Inject constructor(
 
 data class HomeUIState(
     val search: String = "",
-    val movies: List<MovieDto> = listOf()
+    val movies: List<MovieDto> = listOf(),
+    val filteredMovies: List<MovieDto> = listOf()
 )
