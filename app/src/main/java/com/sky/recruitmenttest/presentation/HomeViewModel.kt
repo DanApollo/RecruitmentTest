@@ -1,5 +1,6 @@
 package com.sky.recruitmenttest.presentation
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.sky.recruitmenttest.domain.mapper.MovieToPresentationMapper
 import com.sky.recruitmenttest.domain.repository.MovieRepository
@@ -14,6 +15,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+private const val TAG = "HomeViewModel"
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val repository: MovieRepository,
@@ -21,6 +23,8 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel() {
     private val _homeUIState = MutableStateFlow(HomeUIState())
     val homeUIState: StateFlow<HomeUIState> = _homeUIState.asStateFlow()
+
+
 
     fun onSearchBarChange(search: String) {
         _homeUIState.update { it.copy(search = search) }
@@ -54,6 +58,7 @@ class HomeViewModel @Inject constructor(
             val movies = repository.getMovies().map { mapper.mapToPresentation(it) }
             _homeUIState.update { it.copy(movies = movies, filteredMovies = movies) }
         } catch (e: Exception) {
+            e.localizedMessage?.let { Log.e(TAG, it) }
         }
     }
 }
