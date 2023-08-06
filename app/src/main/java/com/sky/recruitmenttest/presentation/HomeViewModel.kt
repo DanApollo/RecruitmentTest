@@ -1,8 +1,9 @@
 package com.sky.recruitmenttest.presentation
 
 import androidx.lifecycle.ViewModel
-import com.sky.recruitmenttest.data.models.MovieDto
+import com.sky.recruitmenttest.domain.mapper.MovieToPresentationMapper
 import com.sky.recruitmenttest.domain.repository.MovieRepository
+import com.sky.recruitmenttest.presentation.models.MovieDTO
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -15,7 +16,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val repository: MovieRepository
+    private val repository: MovieRepository,
+    private val mapper: MovieToPresentationMapper
 ) : ViewModel() {
     private val _homeUIState = MutableStateFlow(HomeUIState())
     val homeUIState: StateFlow<HomeUIState> = _homeUIState.asStateFlow()
@@ -27,7 +29,7 @@ class HomeViewModel @Inject constructor(
 
     private fun movieFilter() {
         if (homeUIState.value.search.isNotEmpty()) {
-            val tempFilteredMovies = mutableListOf<MovieDto>()
+            val tempFilteredMovies = mutableListOf<MovieDTO>()
             val keyWordArray = homeUIState.value.search.trim().split(" ").toTypedArray()
             for (item in homeUIState.value.movies) {
                 var match = true
@@ -49,7 +51,7 @@ class HomeViewModel @Inject constructor(
     fun getMovies(
     ) = CoroutineScope(Dispatchers.IO).launch {
         try {
-            val movies = repository.getMovies()
+            val movies = repository.getMovies().map { mapper.mapToPresentation(it) }
             _homeUIState.update { it.copy(movies = movies, filteredMovies = movies) }
         } catch (e: Exception) {
         }
@@ -58,6 +60,6 @@ class HomeViewModel @Inject constructor(
 
 data class HomeUIState(
     val search: String = "",
-    val movies: List<MovieDto> = listOf(),
-    val filteredMovies: List<MovieDto> = listOf()
+    val movies: List<MovieDTO> = listOf(),
+    val filteredMovies: List<MovieDTO> = listOf()
 )

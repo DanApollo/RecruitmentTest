@@ -14,10 +14,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.sky.recruitmenttest.data.models.MovieDto
+import com.sky.recruitmenttest.presentation.models.MovieDTO
 
 @Composable
-fun MovieTile(movie: MovieDto) {
+fun MovieTile(movie: MovieDTO) {
     Card(
         modifier = Modifier
             .size(height = 180.dp, width = 100.dp)

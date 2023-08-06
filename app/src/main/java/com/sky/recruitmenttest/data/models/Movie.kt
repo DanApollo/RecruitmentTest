@@ -2,7 +2,7 @@ package com.sky.recruitmenttest.data.models
 
 import com.google.gson.annotations.SerializedName
 
-data class MovieDto(
+data class Movie(
     @SerializedName("Genre")
     val genre: String = "",
     @SerializedName("Title")
