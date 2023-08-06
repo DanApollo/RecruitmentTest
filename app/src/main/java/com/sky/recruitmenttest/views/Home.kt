@@ -35,7 +35,7 @@ fun Home(
             value = state.value.search,
             onValueChange = { viewModel.onSearchBarChange(it) },
             placeholder = {
-                Text(text = "Search")
+                Text(text = "Search...")
             },
         )
         LazyVerticalGrid(
