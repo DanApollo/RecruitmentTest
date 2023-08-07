@@ -12,13 +12,6 @@ data class MovieDto(
     @SerializedName("Poster")
     val poster: String = ""
 ) {
-    fun movieToPresentation(): Movie {
-        return Movie(
-            genre = genre,
-            title = title,
-            poster = poster
-        )
-    }
     fun toMovieEntity(): MovieEntity {
         return MovieEntity(
             genre = genre,
