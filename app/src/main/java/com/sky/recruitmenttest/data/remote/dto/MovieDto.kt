@@ -1,8 +1,8 @@
-package com.sky.recruitmenttest.data.models
+package com.sky.recruitmenttest.data.remote.dto
 
 import com.google.gson.annotations.SerializedName
 
-data class Movie(
+data class MovieDto(
     @SerializedName("Genre")
     val genre: String = "",
     @SerializedName("Title")
