@@ -1,6 +1,6 @@
-package com.sky.recruitmenttest.presentation.models
+package com.sky.recruitmenttest.feature_moviesearch.domain.model
 
-data class MovieDTO(
+data class Movie(
     val genre: String = "",
     val title: String = "",
     val poster: String = ""
