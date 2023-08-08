@@ -10,11 +10,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -26,9 +25,6 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel() {
     private val _homeUIState = MutableStateFlow(HomeUIState())
     val homeUIState: StateFlow<HomeUIState> = _homeUIState.asStateFlow()
-
-    private val _eventFlow = MutableSharedFlow<UIEvent>()
-    val eventFlow = _eventFlow.asSharedFlow()
 
     private var searchJob: Job? = null
 
@@ -79,14 +75,12 @@ class HomeViewModel @Inject constructor(
                     is Resource.Error -> {
                         _homeUIState.update {
                             it.copy(
-                                movies = result.data ?: emptyList(),
-                                filteredMovies = result.data ?: emptyList(),
+                                movies = result.data.orEmpty(),
+                                filteredMovies = result.data.orEmpty(),
+                                message = result.message.orEmpty(),
                                 isLoading = false
                             )
                         }
-                        _eventFlow.emit(UIEvent.ShowSnackbar(
-                            result.message ?: "Unknown error."
-                        ))
                     }
                     is Resource.Loading -> {
                         _homeUIState.update {
@@ -98,11 +92,7 @@ class HomeViewModel @Inject constructor(
                         }
                     }
                 }
-            }
-    }
-
-    sealed class UIEvent {
-        data class ShowSnackbar(val message: String): UIEvent()
+            }.launchIn(this)
     }
 }
 

@@ -18,7 +18,6 @@ class MovieRepositoryImpl @Inject constructor(
 
     override suspend fun getMovies(): Flow<Resource<List<Movie>>> = flow {
         emit(Resource.Loading())
-
         val movies = dao.getMovies().map { it.toMovie() }
         emit(Resource.Loading(data = movies))
 
