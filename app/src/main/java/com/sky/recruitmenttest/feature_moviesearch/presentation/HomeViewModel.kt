@@ -99,7 +99,7 @@ class HomeViewModel @Inject constructor(
                         }
                     }
                 }
-            }.launchIn(this)
+            }
     }
 
     sealed class UIEvent {
