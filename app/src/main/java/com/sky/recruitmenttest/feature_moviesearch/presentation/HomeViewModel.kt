@@ -15,7 +15,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -38,11 +37,11 @@ class HomeViewModel @Inject constructor(
         searchJob?.cancel()
         searchJob = viewModelScope.launch {
             delay(500L)
-            movieFilter()
+            filterMovies()
         }
     }
 
-    private fun movieFilter() {
+    private fun filterMovies() {
         if (homeUIState.value.search.isNotEmpty()) {
             val tempFilteredMovies = mutableListOf<Movie>()
             val keyWordArray = homeUIState.value.search.trim().split(" ").toTypedArray()
@@ -111,5 +110,6 @@ data class HomeUIState(
     val search: String = "",
     val movies: List<Movie> = listOf(),
     val filteredMovies: List<Movie> = listOf(),
+    val message: String = "",
     val isLoading: Boolean = false
 )
