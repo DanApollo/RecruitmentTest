@@ -11,8 +11,10 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.sky.recruitmenttest.R
 import com.sky.recruitmenttest.ui.theme.RecruitmentTestTheme
 import com.sky.recruitmenttest.feature_moviesearch.presentation.HomeViewModel
 import com.sky.recruitmenttest.views.components.MovieTile
@@ -35,7 +37,7 @@ fun Home(
             value = state.value.search,
             onValueChange = { viewModel.onSearchBarChange(it) },
             placeholder = {
-                Text(text = "Search...")
+                Text(text = stringResource(R.string.search_placeholder))
             },
         )
         LazyVerticalGrid(
