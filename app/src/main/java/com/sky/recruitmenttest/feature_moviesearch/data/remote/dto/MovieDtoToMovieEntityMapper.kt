@@ -1,8 +1,9 @@
 package com.sky.recruitmenttest.feature_moviesearch.data.remote.dto
 
 import com.sky.recruitmenttest.feature_moviesearch.data.local.entity.MovieEntity
+import javax.inject.Inject
 
-class MovieDtoToMovieEntityMapper {
+class MovieDtoToMovieEntityMapper @Inject constructor() {
     fun mapToEntity(toBeTransformed: MovieDto): MovieEntity {
         return MovieEntity(
             genre = toBeTransformed.genre,
