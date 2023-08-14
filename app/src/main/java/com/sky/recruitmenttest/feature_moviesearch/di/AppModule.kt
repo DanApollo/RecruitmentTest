@@ -14,12 +14,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
-// Singleton module lives for duration of application lifetime.
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
     @Provides
-    // Only single instance is created for repositories.
     @Singleton
     fun provideApiService(): MovieApi {
         return Retrofit.Builder()
