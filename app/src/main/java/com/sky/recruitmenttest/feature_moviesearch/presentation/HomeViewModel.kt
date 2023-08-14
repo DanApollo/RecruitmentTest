@@ -1,5 +1,7 @@
 package com.sky.recruitmenttest.feature_moviesearch.presentation
 
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sky.recruitmenttest.core.util.Resource
@@ -26,6 +28,9 @@ class HomeViewModel @Inject constructor(
     private val _homeUIState = MutableStateFlow(HomeUIState())
     val homeUIState: StateFlow<HomeUIState> = _homeUIState.asStateFlow()
 
+    private val _movies = mutableStateOf(listOf<Movie>())
+    val movies: State<List<Movie>> = _movies
+
     private var searchJob: Job? = null
 
     fun onSearchBarChange(search: String) {
@@ -33,61 +38,68 @@ class HomeViewModel @Inject constructor(
         searchJob?.cancel()
         searchJob = viewModelScope.launch {
             delay(500L)
-            filterMovies()
+            if (homeUIState.value.search.isNotEmpty()) {
+                _homeUIState.update {
+                    it.copy(
+                        movies = filterMovies(
+                            homeUIState.value.search,
+                            homeUIState.value.movies
+                        )
+                    )
+                }
+            } else {
+                getMovies()
+            }
         }
     }
 
-    private fun filterMovies() {
-        if (homeUIState.value.search.isNotEmpty()) {
-            val tempFilteredMovies = mutableListOf<Movie>()
-            val keyWordArray = homeUIState.value.search.trim().split(" ").toTypedArray()
-            for (item in homeUIState.value.movies) {
-                var match = true
-                for (keyWord in keyWordArray) {
-                    if (!item.title.contains(keyWord, ignoreCase = true) && !item.genre.contains(keyWord, ignoreCase = true)) {
-                        match = false
-                    }
-                }
-                if (match) {
-                    tempFilteredMovies.add(item)
+    private fun filterMovies(searchTerm: String, movies: List<Movie>): List<Movie> {
+        val filteredMovies = mutableListOf<Movie>()
+        val keyWordArray = searchTerm.trim().split(" ").toTypedArray()
+        for (item in movies) {
+            var match = true
+            for (keyWord in keyWordArray) {
+                if (!item.title.contains(
+                        keyWord,
+                        ignoreCase = true
+                    ) && !item.genre.contains(keyWord, ignoreCase = true)
+                ) {
+                    match = false
                 }
             }
-            _homeUIState.update { it.copy(filteredMovies = tempFilteredMovies) }
-        } else {
-            _homeUIState.update { it.copy(filteredMovies = homeUIState.value.movies) }
+            if (match) {
+                filteredMovies.add(item)
+            }
         }
+        return filteredMovies
     }
 
     fun getMovies(
     ) = CoroutineScope(Dispatchers.IO).launch {
         repository.getMovies()
             .onEach { result ->
-                when(result) {
+                when (result) {
                     is Resource.Success -> {
                         _homeUIState.update {
                             it.copy(
                                 movies = result.data ?: emptyList(),
-                                filteredMovies = result.data ?: emptyList(),
-                                isLoading = false
                             )
                         }
                     }
+
                     is Resource.Error -> {
                         _homeUIState.update {
                             it.copy(
                                 movies = result.data.orEmpty(),
-                                filteredMovies = result.data.orEmpty(),
                                 message = result.message.orEmpty(),
-                                isLoading = false
                             )
                         }
                     }
+
                     is Resource.Loading -> {
                         _homeUIState.update {
                             it.copy(
                                 movies = result.data ?: emptyList(),
-                                filteredMovies = result.data ?: emptyList(),
-                                isLoading = true
                             )
                         }
                     }
@@ -99,7 +111,5 @@ class HomeViewModel @Inject constructor(
 data class HomeUIState(
     val search: String = "",
     val movies: List<Movie> = listOf(),
-    val filteredMovies: List<Movie> = listOf(),
     val message: String = "",
-    val isLoading: Boolean = false
 )
