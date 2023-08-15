@@ -16,13 +16,13 @@ import javax.inject.Inject
 class MovieRepositoryImpl @Inject constructor(
     private val api: MovieApi,
     private val dao: MovieDao,
-    private val movieToDomainMapper: MovieEntityToDomainMapper,
+    private val movieEntityToDomainMapper: MovieEntityToDomainMapper,
     private val movieDaoToMovieEntityMapper: MovieDtoToMovieEntityMapper
 ) : MovieRepository {
 
     override suspend fun getMovies(): Flow<Resource<List<Movie>>> = flow {
         emit(Resource.Loading())
-        val movies = dao.getMovies().map { movieToDomainMapper.mapToDomain(it) }
+        val movies = dao.getMovies().map { movieEntityToDomainMapper.mapToDomain(it) }
         emit(Resource.Success(data = movies))
 
         try {
@@ -44,8 +44,7 @@ class MovieRepositoryImpl @Inject constructor(
                 )
             )
         }
-
-        val newMovies = dao.getMovies().map { movieToDomainMapper.mapToDomain(it) }
+        val newMovies = dao.getMovies().map { movieEntityToDomainMapper.mapToDomain(it) }
         emit(Resource.Success(newMovies))
     }
 }
