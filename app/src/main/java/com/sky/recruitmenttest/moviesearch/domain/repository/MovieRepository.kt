@@ -1,7 +1,7 @@
-package com.sky.recruitmenttest.feature_moviesearch.domain.repository
+package com.sky.recruitmenttest.moviesearch.domain.repository
 
 import com.sky.recruitmenttest.core.util.Resource
-import com.sky.recruitmenttest.feature_moviesearch.domain.model.Movie
+import com.sky.recruitmenttest.moviesearch.domain.model.Movie
 import kotlinx.coroutines.flow.Flow
 
 interface MovieRepository {

@@ -16,7 +16,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.sky.recruitmenttest.R
 import com.sky.recruitmenttest.ui.theme.RecruitmentTestTheme
-import com.sky.recruitmenttest.feature_moviesearch.presentation.HomeViewModel
+import com.sky.recruitmenttest.moviesearch.presentation.HomeViewModel
 import com.sky.recruitmenttest.views.components.MovieTile
 
 @Composable

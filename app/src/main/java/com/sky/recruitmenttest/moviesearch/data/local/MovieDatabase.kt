@@ -1,8 +1,8 @@
-package com.sky.recruitmenttest.feature_moviesearch.data.local
+package com.sky.recruitmenttest.moviesearch.data.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.sky.recruitmenttest.feature_moviesearch.data.local.entity.MovieEntity
+import com.sky.recruitmenttest.moviesearch.data.local.entity.MovieEntity
 
 @Database(
     entities = [MovieEntity::class],

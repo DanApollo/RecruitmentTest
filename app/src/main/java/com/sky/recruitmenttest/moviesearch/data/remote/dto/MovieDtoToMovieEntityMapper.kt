@@ -1,6 +1,6 @@
-package com.sky.recruitmenttest.feature_moviesearch.data.remote.dto
+package com.sky.recruitmenttest.moviesearch.data.remote.dto
 
-import com.sky.recruitmenttest.feature_moviesearch.data.local.entity.MovieEntity
+import com.sky.recruitmenttest.moviesearch.data.local.entity.MovieEntity
 import javax.inject.Inject
 
 class MovieDtoToMovieEntityMapper @Inject constructor() {

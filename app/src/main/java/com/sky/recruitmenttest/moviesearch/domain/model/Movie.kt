@@ -1,4 +1,4 @@
-package com.sky.recruitmenttest.feature_moviesearch.domain.model
+package com.sky.recruitmenttest.moviesearch.domain.model
 
 data class Movie(
     val genre: String = "",

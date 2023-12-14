@@ -1,7 +1,7 @@
 package com.sky.recruitmenttest
 
-import com.sky.recruitmenttest.feature_moviesearch.data.remote.dto.MovieDto
-import com.sky.recruitmenttest.feature_moviesearch.data.remote.dto.MovieDtoToMovieEntityMapper
+import com.sky.recruitmenttest.moviesearch.data.remote.dto.MovieDto
+import com.sky.recruitmenttest.moviesearch.data.remote.dto.MovieDtoToMovieEntityMapper
 import org.junit.Assert.*
 import org.junit.Test
 

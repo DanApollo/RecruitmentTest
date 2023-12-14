@@ -1,4 +1,4 @@
-package com.sky.recruitmenttest.feature_moviesearch.data.local.entity
+package com.sky.recruitmenttest.moviesearch.data.local.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

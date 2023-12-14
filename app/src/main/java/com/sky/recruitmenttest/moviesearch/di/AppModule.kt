@@ -1,10 +1,10 @@
-package com.sky.recruitmenttest.feature_moviesearch.di
+package com.sky.recruitmenttest.moviesearch.di
 
 import android.app.Application
 import androidx.room.Room
-import com.sky.recruitmenttest.feature_moviesearch.data.local.MovieDao
-import com.sky.recruitmenttest.feature_moviesearch.data.local.MovieDatabase
-import com.sky.recruitmenttest.feature_moviesearch.data.remote.MovieApi
+import com.sky.recruitmenttest.moviesearch.data.local.MovieDao
+import com.sky.recruitmenttest.moviesearch.data.local.MovieDatabase
+import com.sky.recruitmenttest.moviesearch.data.remote.MovieApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

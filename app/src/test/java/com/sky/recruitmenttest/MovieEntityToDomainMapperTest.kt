@@ -1,7 +1,7 @@
 package com.sky.recruitmenttest
 
-import com.sky.recruitmenttest.feature_moviesearch.data.local.entity.MovieEntity
-import com.sky.recruitmenttest.feature_moviesearch.data.local.entity.MovieEntityToDomainMapper
+import com.sky.recruitmenttest.moviesearch.data.local.entity.MovieEntity
+import com.sky.recruitmenttest.moviesearch.data.local.entity.MovieEntityToDomainMapper
 import org.junit.Test
 import org.junit.Assert.*
 

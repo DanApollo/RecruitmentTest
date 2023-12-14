@@ -1,12 +1,10 @@
-package com.sky.recruitmenttest.feature_moviesearch.presentation
+package com.sky.recruitmenttest.moviesearch.presentation
 
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sky.recruitmenttest.core.util.Resource
-import com.sky.recruitmenttest.feature_moviesearch.domain.model.Movie
-import com.sky.recruitmenttest.feature_moviesearch.domain.repository.MovieRepository
+import com.sky.recruitmenttest.moviesearch.domain.model.Movie
+import com.sky.recruitmenttest.moviesearch.domain.repository.MovieRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -27,9 +25,6 @@ class HomeViewModel @Inject constructor(
 ) : ViewModel() {
     private val _homeUIState = MutableStateFlow(HomeUIState())
     val homeUIState: StateFlow<HomeUIState> = _homeUIState.asStateFlow()
-
-    private val _movies = mutableStateOf(listOf<Movie>())
-    val movies: State<List<Movie>> = _movies
 
     private var searchJob: Job? = null
 

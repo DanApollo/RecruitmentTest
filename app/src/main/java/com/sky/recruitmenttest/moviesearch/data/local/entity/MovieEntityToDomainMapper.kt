@@ -1,6 +1,6 @@
-package com.sky.recruitmenttest.feature_moviesearch.data.local.entity
+package com.sky.recruitmenttest.moviesearch.data.local.entity
 
-import com.sky.recruitmenttest.feature_moviesearch.domain.model.Movie
+import com.sky.recruitmenttest.moviesearch.domain.model.Movie
 import javax.inject.Inject
 
 class MovieEntityToDomainMapper @Inject constructor() {

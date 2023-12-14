@@ -1,10 +1,10 @@
-package com.sky.recruitmenttest.feature_moviesearch.data.local
+package com.sky.recruitmenttest.moviesearch.data.local
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.sky.recruitmenttest.feature_moviesearch.data.local.entity.MovieEntity
+import com.sky.recruitmenttest.moviesearch.data.local.entity.MovieEntity
 
 @Dao
 interface MovieDao {

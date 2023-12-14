@@ -1,6 +1,6 @@
-package com.sky.recruitmenttest.feature_moviesearch.data.remote
+package com.sky.recruitmenttest.moviesearch.data.remote
 
-import com.sky.recruitmenttest.feature_moviesearch.data.remote.dto.MovieDto
+import com.sky.recruitmenttest.moviesearch.data.remote.dto.MovieDto
 import retrofit2.http.GET
 
 interface MovieApi {

@@ -1,8 +1,8 @@
 package com.sky.recruitmenttest
 
-import com.sky.recruitmenttest.feature_moviesearch.domain.repository.MovieRepository
-import com.sky.recruitmenttest.feature_moviesearch.presentation.HomeUIState
-import com.sky.recruitmenttest.feature_moviesearch.presentation.HomeViewModel
+import com.sky.recruitmenttest.moviesearch.domain.repository.MovieRepository
+import com.sky.recruitmenttest.moviesearch.presentation.HomeUIState
+import com.sky.recruitmenttest.moviesearch.presentation.HomeViewModel
 import io.mockk.mockk
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first

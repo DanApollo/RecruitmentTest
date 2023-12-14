@@ -1,12 +1,12 @@
-package com.sky.recruitmenttest.feature_moviesearch.data.repository
+package com.sky.recruitmenttest.moviesearch.data.repository
 
 import com.sky.recruitmenttest.core.util.Resource
-import com.sky.recruitmenttest.feature_moviesearch.data.local.MovieDao
-import com.sky.recruitmenttest.feature_moviesearch.data.local.entity.MovieEntityToDomainMapper
-import com.sky.recruitmenttest.feature_moviesearch.data.remote.MovieApi
-import com.sky.recruitmenttest.feature_moviesearch.data.remote.dto.MovieDtoToMovieEntityMapper
-import com.sky.recruitmenttest.feature_moviesearch.domain.model.Movie
-import com.sky.recruitmenttest.feature_moviesearch.domain.repository.MovieRepository
+import com.sky.recruitmenttest.moviesearch.data.local.MovieDao
+import com.sky.recruitmenttest.moviesearch.data.local.entity.MovieEntityToDomainMapper
+import com.sky.recruitmenttest.moviesearch.data.remote.MovieApi
+import com.sky.recruitmenttest.moviesearch.data.remote.dto.MovieDtoToMovieEntityMapper
+import com.sky.recruitmenttest.moviesearch.domain.model.Movie
+import com.sky.recruitmenttest.moviesearch.domain.repository.MovieRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException

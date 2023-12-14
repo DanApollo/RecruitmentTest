@@ -1,4 +1,4 @@
-package com.sky.recruitmenttest.feature_moviesearch.data.remote.dto
+package com.sky.recruitmenttest.moviesearch.data.remote.dto
 
 import com.google.gson.annotations.SerializedName
 
